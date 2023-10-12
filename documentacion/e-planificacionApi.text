@@ -1,0 +1,18 @@
+Podemos agregar las rutas faltantes de recetas
+Route::post('recipes',              [RecipeController::class, 'store']);
+Route::put('recipes/{recipe}',      [RecipeController::class, 'update']);
+Route::delete('recipes/{recipe}',      [RecipeController::class, 'destroy']);
+
+o
+
+Route::apiResource('recipes', RecipeController::class);
+con esto tenemos acceso a todos los metodos de esa clase
+
+
+En el controlador creamos las funciones... por ahora lo vamos a dejar sin codigo
+
+    public function store() { }
+    public function update() { }
+
+    public function destroy() { }
+
