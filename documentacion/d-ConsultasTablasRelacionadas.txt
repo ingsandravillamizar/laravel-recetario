@@ -1,0 +1,40 @@
+
+Esto es para que cargue las recetas de esa categoria consultada,  esto se hace en el metodo show del controlador de categoria
+return $category->load('recipes');
+
+El modelo de categorias ahi que arreglarlo
+
+public function recipes()
+    {
+        return $this->hasMany(Recipe::class);
+        hasmany  tu como categoria tienes muchas recetas
+    }
+
+
+en el controlador de categoria
+ return $category->load('recipes');      para consultar las recetas de una categoria
+
+
+en el controlador de recetas
+        combinacion with - get
+        return Recipe::with('category', 'tags', 'user')->get();
+
+        traigame las recetas con algo mas...   la categoria, las etiquetas y el usuario.   debemos usar el metodo get
+        with--  cuando hacemos una consulta de cero,  y le estamos diciendo que nos traiga la categoria y tags de esa recetas
+
+
+        cambiamos return $recipe;
+        return $recipe->load('category', 'tags', 'user'); para que cargue est
+
+
+En el modelo de recipes   agregamos
+
+   public function category()
+    {
+        return $this->belongsTo(Category::class);  //perteneces a...   una categoria
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);     //como reseta pertenece a un usuario
+    }
