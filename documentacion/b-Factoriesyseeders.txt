@@ -49,3 +49,4 @@ DB_PASSWORD=pwqTutKEdsoMsx8T
         return $this->belongsToMany(Tag::class);
     }
 
+// paso final:  php artisan migrate --seed

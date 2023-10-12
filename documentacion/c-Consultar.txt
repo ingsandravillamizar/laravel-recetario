@@ -1,0 +1,63 @@
+
+
+Paso 1
+Crear controlador
+php artisan make:controller Api/CategoryController
+Esto nos crea dentro de app/Http  la carpeta Api y el controlador de categoria
+
+Creamos los otros controladores
+php artisan make:controller Api/RecipeController
+php artisan make:controller Api/TagController
+
+
+
+Paso 2
+Rutas
+carpeta routes
+se comenta la ruta que tiene por defecto
+y se crean las que se necesitan asignando
+
+llamando el controlador
+use App\Http\Controllers\Api\CategoryController;
+Route::get('categories',            [CategoryController::class, 'index']);     // obtener categorias   [controlador, metodo]
+Route::get('categories/{category}', [CategoryController::class, 'show']);      // obtener categoria(idcategoria)   [controlador, metodo]
+
+
+Paso 3
+php artisan route:list --path=api
+Este comando al ejecutarlo en la terminal  nos muestra las rutas
+  GET|HEAD       api/categories ............................................... Api\CategoryController@index
+  GET|HEAD       api/categories/{category} .................................... Api\CategoryController@show
+  GET|HEAD       api/recipes .................................................. Api\RecipeController@index
+  GET|HEAD       api/recipes/{recipe} ......................................... Api\RecipeController@show
+  GET|HEAD       api/tags ..................................................... Api\TagController@index
+  GET|HEAD       api/tags/{tag} ............................................... Api\TagController@show
+
+Paso 4
+
+Traer el modelo
+use App\Models\Category;
+
+Programamos el controlador   con los metodos index:  mostramos todas las categorias  y show: solo muestra una
+ public function index()
+    {
+        return Category::all();
+    }
+
+    public function show(Category $category)
+    {
+        return $category;
+    }
+
+
+
+
+Resumen General
+
+1- En migration crear los modelos y en migrations definir los campos    (se puede obviar)
+2- A partir de los factories relleno con datos de prueba
+3- En seeder es donde doy la orden de crear esos datos....
+4- Crear las rutas
+5- Crear los controladores y programar los metodos
+6- Php artisan serve para ejecutarl
+7- Probar con postman o la url directamente:  http://127.0.0.1:8000/api/categories
