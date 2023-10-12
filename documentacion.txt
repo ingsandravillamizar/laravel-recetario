@@ -1,0 +1,12 @@
+laravel new laravel-api  Para crear el proyecto
+
+
+php artisan help
+
+comando php artisan para crear:
+php artisan make:model Category -mf     // Crea la entidad, el factory y la migracion   categorias
+php artisan make:model Recipe -mf       // Recetas
+php artisan make:model Tag -mf          // Etiquetas
+
+
+php artisan make:migration create_recipe_tag_table     //Crea la relacion  se crean en singular
