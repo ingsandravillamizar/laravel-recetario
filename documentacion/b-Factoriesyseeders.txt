@@ -1,0 +1,51 @@
+FactoriesySeeders
+
+Los Factories es para crear una estructura inicial de datos
+Creamos de manera aleatoria diferentes datos:
+
+
+ 'name' => ucfirst(fake()->word()),     En categoyFactory.php,  la primer letra en mayuscula
+ 'name' => fake()->word(),   En tagFactory.php   minuscula
+
+RecipeFactory.php
+            'category_id' => \App\Models\Category::all()->random()->id,  Trae el id de una Categoria aleatoria a partir de una categoria existente
+            'user_id' => \App\Models\User::all()->random()->id,
+            'title' => fake()->sentence(),    trae una oracion
+            'description' => fake()->text(),
+            'ingredients' => fake()->text(),
+            'instructions' => fake()->text(),
+            'image' => fake()->imageUrl(640, 480),
+
+//Configuracion de la base de datos
+DB_CONNECTION=mysql
+DB_HOST=192.168.10.6
+DB_PORT=3306
+DB_DATABASE=recetas
+DB_USERNAME=jleon
+DB_PASSWORD=pwqTutKEdsoMsx8T
+
+//seeders
+        \App\Models\User::factory()->create(['email' => 'i@admin.com']);    // creamos un usuario con el email  i@admin.com
+        \App\Models\User::factory(29)->create();   // creacion de 20 usuarios aleatorios
+        \App\Models\Category::factory(12)->create();
+        \App\Models\Recipe::factory(100)->create();
+        \App\Models\Tag::factory(40)->create();
+
+          // Many to many  :  relacion muchos a muchos
+          $recipes = \App\Models\Recipe::all();    guardo las recetas en esta variable
+          $tags    = \App\Models\Tag::all();       guardo las etiquetas en esta variable
+
+
+        // recorro las recetas y le voy asignando la etiquetas (2 o 4)
+        foreach($recipes as $recipe) {
+            $recipe->tags()->attach($tags->random(rand(2, 4)));
+        }
+
+
+// finalmente en el modelo de recetas  creamos la relacion
+
+ public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
