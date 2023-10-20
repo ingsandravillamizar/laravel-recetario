@@ -1,0 +1,76 @@
+Hablamos de la consistencia entre
+endpoints, recuros y colecciones
+
+
+La idea es utilizar recursos para personalizar nuestras consultas y no hacerlo directamente en los metodos del controlador
+En RecipeController, pudieramos colocar
+return Recipe::select('id','category','user_id','tittle')->with('category','tags','user')->get();
+se debe dejar    return Recipe::with('category', 'tags', 'user')->get();
+y se debe crear un recurso
+
+
+Para crear un recurso:  queda dentro de la carpeta recursos
+php artisan make:resource CategoryResource
+
+en el recurso colocamos los campos
+ return [
+            'id' => $this->id,
+            'type' => 'category',
+            'attributes' => [
+                'name' => $this->name,
+            ],
+            'relationships' => [
+                'recipes' => $this->recipes
+            ],
+        ];
+en el controlador debemos invocar el recurso :  use App\Http\Resources\CategoryResource;
+y cambiamos:   return $category->load('recipes');  por:
+
+  $category =  $category->load('recipes');
+return new CategoryResource(Category::all());
+
+
+
+y....   nos muestra toda la coleccion con la misma estructura,  aqui hablamos de coherencia
+ public function index()
+    {
+        return CategoryResource::collection(Category::all());
+    }
+
+
+
+
+//SIGUIENTE PASO...   Hacer lo mismo pero con solo la coleccion, es decir no tener la relacion de recetas
+php artisan make:resource CategoryCollection
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+
+class CategoryCollection extends ResourceCollection
+{
+    /**
+     * Transform the resource collection into an array.
+     *
+     * @return array<int|string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return $this->collection->map(function ($category) {
+            return [
+                'id' => $category->id,
+                'type' => 'category',
+                'attributes' => [
+                    'name' => $category->name,
+                ]
+            ];
+        })->toArray();
+    }
+}
+
+
+
+
+

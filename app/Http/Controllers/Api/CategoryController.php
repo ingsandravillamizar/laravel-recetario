@@ -4,17 +4,23 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\CategoryCollection;
 use App\Models\Category;
+
+
 class CategoryController extends Controller
 {
     public function index()
     {
-        return Category::all();
+        return  new CategoryCollection(Category::all());
     }
 
     public function show(Category $category)
     {
-        return $category->load('recipes');
+        $category = $category->load('recipes');
+        return new CategoryResource($category);
+
+
     }
 }
