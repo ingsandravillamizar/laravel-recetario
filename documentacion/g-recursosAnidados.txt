@@ -1,0 +1,6 @@
+Creamos los recursos de etiquetas
+    php artisan make:resource TagResource
+    php artisan make:resource RecipeResource
+
+
+Dentro de las etiquetas
