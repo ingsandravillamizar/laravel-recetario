@@ -1,3 +1,4 @@
+Nos ubicamos en la carpeta:
 laravel new laravel-api  Para crear el proyecto
 
 
@@ -9,4 +10,8 @@ php artisan make:model Recipe -mf       // Recetas
 php artisan make:model Tag -mf          // Etiquetas
 
 
-php artisan make:migration create_recipe_tag_table     //Crea la relacion  se crean en singular
+php artisan make:migration create_recipe_tag_table
+    //Crea la relacion  se crean en singular
+
+
+

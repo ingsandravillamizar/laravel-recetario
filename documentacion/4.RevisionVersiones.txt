@@ -1,0 +1,6 @@
+laravel -v  : 4.5.1
+php -v      : 8.2.3
+composer -v : 2.4.2
+
+Base de datos:
+mariadb -v   :

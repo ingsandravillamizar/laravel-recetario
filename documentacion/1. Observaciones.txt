@@ -1,0 +1,15 @@
+Buenas Practicas
+Ejemplo: Api de Recetas:  titulo, autor, categoria, etiquetas relacionadas, ingredientes, instrucciones, imagen y descripcion.
+Se podran ver todas las categorias y filtrar ò listar etiquetas y consultar las relacionadas a determinada etiqueta
+
+
+- Uso de RestFul
+- Respuestas Estandaar
+- Versionado de la apiInicio de sesion y autorizacion
+- validaciion de datos
+- organizacion de la logica
+- separacion de recursos
+- manejo adecuado de errores
+- documentacion y testing
+- paginación
+

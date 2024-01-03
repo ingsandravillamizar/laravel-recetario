@@ -21,6 +21,7 @@ class Recipe extends Model
     }
 
 
+    //Relacio muchos a muchos
     public function tags()
     {
         return $this->belongsToMany(Tag::class);

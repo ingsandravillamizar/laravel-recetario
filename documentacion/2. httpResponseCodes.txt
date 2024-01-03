@@ -1,0 +1,12 @@
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+
+
+HTTP response status codes:  Segumiento de la solicitud que estamos haciendo
+
+Informational responses (100 – 199)   -- Respuestas Afirmativas
+Successful responses    (200 – 299)   -- front y back estan bien: Respuestas satisfactorias   201:Creacion ok
+Redirection messages    (300 – 399)   -- Re-direcciones
+Client error responses  (400 – 499)   -- El front hizo mal la solicitud   404 Not Found  :  Error del cliente
+Server error responses  (500 – 599)   -- Fallo el backend  : Error de servidor
+
